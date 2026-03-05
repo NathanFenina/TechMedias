@@ -1,1 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Proposition TechMedias — Decupler × Nathan Fenina</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
 
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--gp:linear-gradient(135deg,#667eea 0%,#764ba2 100%);--ge:linear-gradient(135deg,#10b981 0%,#059669 100%);--vl:#667eea;--em:#10b981;--dbg:#0f0f1a;--dc:#1a1a2e;--dch:#222240;--db:rgba(102,126,234,.15);--tp:#f1f5f9;--ts:#94a3b8;--tm:#64748b;--sg:rgba(255,255,255,.04);--sgh:rgba(255,255,255,.08)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--dbg);color:var(--tp);line-height:1.6;overflow-x:hidden}
+a{color:var(--vl);text-decoration:none}
+h1,h2,h3,h4,h5,h6{margin:0;padding:0}
+p{margin:0}ul,ol{margin:0;padding:0;list-style:none}
+section{position:relative;z-index:1}
+
+/* AMBIENT */
+.amb{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.amb .ob{position:absolute;border-radius:50%;filter:blur(120px);opacity:.12}
+.ob1{width:600px;height:600px;background:#667eea;top:-200px;right:-200px;animation:fl 20s ease-in-out infinite}
+.ob2{width:500px;height:500px;background:#764ba2;bottom:20%;left:-150px;animation:fl 25s ease-in-out infinite reverse}
+.ob3{width:400px;height:400px;background:#10b981;top:50%;right:-100px;opacity:.06;animation:fl 18s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+.ct{max-width:1100px;margin:0 auto;padding:0 24px}
+.gt{background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.et{background:var(--ge);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* EXPIRY BAR */
+.ebar{position:sticky;top:0;z-index:100;padding:14px 24px;background:rgba(15,15,26,.92);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid var(--db);text-align:center}
+.ebar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ebar-left{display:flex;align-items:center;gap:10px}
+.ebar-logo{font-size:18px;font-weight:800;color:var(--tp)}
+.ebar-logo span{background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ebar-exp{display:flex;align-items:center;gap:8px;padding:8px 18px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;font-size:13px;font-weight:600;color:#f59e0b}
+.ebar-exp .edot{width:6px;height:6px;background:#f59e0b;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+.ebar-cta{padding:10px 24px;background:var(--gp);color:#fff;font-size:13px;font-weight:700;border-radius:8px;transition:all .3s;box-shadow:0 4px 16px rgba(102,126,234,.3)}
+.ebar-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(102,126,234,.5);color:#fff}
+
+/* TAG */
+.stag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:24px}
+.stag-v{color:var(--vl);background:rgba(102,126,234,.12);border:1px solid rgba(102,126,234,.25)}
+.stag-e{color:var(--em);background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.25)}
+.stag-a{color:#f59e0b;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25)}
+
+/* SECTION HEADER */
+.shc{text-align:center;margin-bottom:64px}
+.shc h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:var(--tp);margin-bottom:16px}
+.shc p{font-size:17px;color:var(--ts);max-width:650px;margin:0 auto}
+
+/* HERO */
+.s-hero{padding:120px 24px 80px;text-align:center}
+.hbadge{display:inline-flex;align-items:center;gap:10px;padding:10px 24px;background:rgba(102,126,234,.1);border:1px solid rgba(102,126,234,.3);border-radius:30px;margin-bottom:32px}
+.hbadge span{font-size:13px;font-weight:700;color:var(--vl);letter-spacing:1px;text-transform:uppercase}
+.s-hero h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:900;line-height:1.15;color:var(--tp);margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto}
+.hsub{font-size:clamp(1rem,2.5vw,1.15rem);color:var(--ts);max-width:680px;margin:0 auto 40px;line-height:1.7}
+.hsub strong{color:var(--tp);font-weight:600}
+.hfor{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;background:var(--dc);border:1px solid var(--db);border-radius:16px;margin-bottom:40px}
+.hfor-av{width:40px;height:40px;border-radius:50%;background:var(--gp);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.hfor-info{text-align:left}
+.hfor-name{font-size:14px;font-weight:700;color:var(--tp)}
+.hfor-role{font-size:12px;color:var(--tm)}
+
+/* DIAGNOSTIC */
+.s-diag{padding:100px 24px;background:#0e0e18;border-top:1px solid var(--db);border-bottom:1px solid var(--db)}
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.diag-txt h2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800;line-height:1.25;color:var(--tp);margin-bottom:24px}
+.diag-txt p{font-size:17px;line-height:1.8;color:var(--ts);margin-bottom:20px}
+.diag-txt strong{color:var(--tp)}
+.dlist{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.dlist li{display:flex;align-items:flex-start;gap:14px;font-size:16px;color:var(--ts);line-height:1.6}
+.dico{flex-shrink:0;width:28px;height:28px;border-radius:8px;background:rgba(102,126,234,.12);display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:2px}
+.diag-card{background:var(--dc);border:1px solid var(--db);border-radius:20px;padding:40px;position:relative;overflow:hidden}
+.diag-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gp)}
+.diag-card h3{font-size:20px;font-weight:800;color:var(--tp);margin-bottom:24px}
+.comp-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.comp-item:last-child{border-bottom:none}
+.comp-name{font-size:15px;color:var(--ts)}
+.comp-type{font-size:12px;font-weight:600;padding:4px 12px;border-radius:6px;background:rgba(102,126,234,.1);color:var(--vl)}
+
+/* PHASE CARDS */
+.s-phase{padding:100px 24px}
+.phase-card{background:var(--dc);border:1px solid var(--db);border-radius:24px;padding:48px;margin-bottom:32px;position:relative;overflow:hidden}
+.phase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.phase-card.p1::before{background:var(--gp)}
+.phase-card.p2::before{background:var(--ge)}
+.phase-head{display:flex;align-items:center;gap:20px;margin-bottom:32px}
+.phase-num{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;flex-shrink:0}
+.p1 .phase-num{background:var(--gp)}
+.p2 .phase-num{background:var(--ge)}
+.phase-title h3{font-size:24px;font-weight:800;color:var(--tp)}
+.phase-title p{font-size:14px;color:var(--tm);margin-top:4px}
+.phase-price{margin-left:auto;text-align:right}
+.phase-price .amount{font-size:28px;font-weight:900;font-family:'JetBrains Mono',monospace}
+.p1 .phase-price .amount{background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.p2 .phase-price .amount{background:var(--ge);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.phase-price .freq{font-size:13px;color:var(--tm)}
+.phase-body{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.deliv{padding:24px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:14px}
+.deliv h4{font-size:15px;font-weight:700;color:var(--tp);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.deliv ul{display:flex;flex-direction:column;gap:8px}
+.deliv ul li{font-size:14px;line-height:1.6;color:var(--ts);padding-left:20px;position:relative}
+.deliv ul li::before{content:'→';position:absolute;left:0;color:var(--vl);font-weight:700}
+
+/* BONUS */
+.s-bonus{padding:100px 24px;background:#0e0e18;border-top:1px solid rgba(16,185,129,.1);border-bottom:1px solid rgba(16,185,129,.1)}
+.bonus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.bcard{padding:36px;background:var(--dc);border:1px solid var(--db);border-radius:20px;transition:all .3s;position:relative;overflow:hidden}
+.bcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ge);opacity:0;transition:opacity .3s}
+.bcard:hover{border-color:rgba(16,185,129,.3);transform:translateY(-4px)}.bcard:hover::before{opacity:1}
+.bcard-ico{font-size:36px;margin-bottom:20px;display:block}
+.bcard h3{font-size:17px;font-weight:700;color:var(--tp);margin-bottom:10px}
+.bcard p{font-size:14px;line-height:1.7;color:var(--tm)}
+.bcard .badge-free{display:inline-flex;margin-top:14px;padding:4px 14px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.2);border-radius:6px;font-size:12px;font-weight:700;color:var(--em)}
+
+/* TIMELINE */
+.s-timeline{padding:100px 24px}
+.tl-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;max-width:1000px;margin:0 auto}
+.tl-item{padding:28px 20px;background:var(--dc);border:1px solid var(--db);border-radius:16px;text-align:center;position:relative;overflow:hidden}
+.tl-item::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gp)}
+.tl-month{font-size:12px;font-weight:700;color:var(--vl);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.tl-item h4{font-size:14px;font-weight:700;color:var(--tp);margin-bottom:8px}
+.tl-item p{font-size:12px;line-height:1.5;color:var(--tm)}
+
+/* LINKEDIN */
+.s-linkedin{padding:100px 24px;background:#0e0e18;border-top:1px solid var(--db);border-bottom:1px solid var(--db)}
+.li-card{max-width:800px;margin:0 auto;padding:48px;background:var(--dc);border:1px solid rgba(102,126,234,.2);border-radius:24px;position:relative;overflow:hidden}
+.li-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0077b5,#667eea)}
+.li-card h3{font-size:22px;font-weight:800;color:var(--tp);margin-bottom:16px}
+.li-card>p{font-size:16px;line-height:1.8;color:var(--ts);margin-bottom:20px}
+.li-card strong{color:var(--tp)}
+.li-points{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.li-points li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:var(--ts)}
+.li-ico{flex-shrink:0;width:28px;height:28px;border-radius:8px;background:rgba(0,119,181,.15);display:flex;align-items:center;justify-content:center;font-size:14px}
+.li-price{margin-top:28px;padding-top:20px;border-top:1px solid var(--db);display:flex;align-items:center;justify-content:space-between}
+.li-price .amount{font-size:22px;font-weight:800;color:#0077b5}
+.li-price .note{font-size:13px;color:var(--tm)}
+
+/* RECAP */
+.s-recap{padding:100px 24px}
+.recap-box{max-width:800px;margin:0 auto;background:var(--dc);border:2px solid rgba(102,126,234,.3);border-radius:24px;overflow:hidden}
+.recap-box::before{content:'';display:block;height:4px;background:var(--gp)}
+.recap-inner{padding:48px}
+.recap-inner h2{font-size:clamp(1.6rem,4vw,2rem);font-weight:800;color:var(--tp);margin-bottom:32px;text-align:center}
+.recap-line{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.recap-line:last-of-type{border-bottom:none}
+.recap-label{font-size:16px;color:var(--ts)}
+.recap-val{font-size:16px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.recap-val.violet{color:var(--vl)}
+.recap-val.emerald{color:var(--em)}
+.recap-total{margin-top:24px;padding-top:24px;border-top:2px solid rgba(102,126,234,.3);display:flex;justify-content:space-between;align-items:center}
+.recap-total .recap-label{font-size:18px;font-weight:800;color:var(--tp)}
+.recap-total .recap-val{font-size:24px;font-weight:900;background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.recap-note{margin-top:24px;font-size:14px;color:var(--tm);text-align:center;line-height:1.7}
+
+/* WHY */
+.s-why{padding:100px 24px;background:#0e0e18;border-top:1px solid var(--db);border-bottom:1px solid var(--db)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.wcard{padding:28px;background:var(--dc);border:1px solid var(--db);border-radius:16px;text-align:center;transition:all .3s}
+.wcard:hover{border-color:rgba(102,126,234,.3);transform:translateY(-4px)}
+.wcard-ico{font-size:36px;margin-bottom:16px;display:block}
+.wcard h4{font-size:15px;font-weight:700;color:var(--tp);margin-bottom:8px}
+.wcard p{font-size:13px;line-height:1.6;color:var(--tm)}
+
+/* CTA */
+.s-cta{padding:100px 24px;text-align:center}
+.ctabox{max-width:700px;margin:0 auto;padding:60px 48px;background:var(--dc);border:2px solid rgba(102,126,234,.3);border-radius:24px;position:relative;overflow:hidden}
+.ctabox::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gp)}
+.ctabox h2{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;color:var(--tp);margin-bottom:16px}
+.ctabox>p{font-size:17px;color:var(--ts);margin-bottom:36px;line-height:1.7}
+.ctabtn{display:inline-flex;align-items:center;gap:10px;padding:18px 48px;background:var(--gp);color:#fff;font-size:17px;font-weight:700;border-radius:12px;transition:all .3s;box-shadow:0 8px 32px rgba(102,126,234,.4)}
+.ctabtn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(102,126,234,.6);color:#fff}
+.cta-trust{margin-top:20px;font-size:14px;color:var(--tm)}
+.cta-exp{margin-top:16px;display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;font-size:13px;font-weight:600;color:#f59e0b}
+
+/* FOOTER */
+.s-foot{padding:40px 24px;text-align:center;border-top:1px solid var(--db)}
+.s-foot p{font-size:14px;color:var(--tm)}
+.s-foot a{color:var(--vl);font-weight:600}
+
+/* RESPONSIVE */
+@media(max-width:968px){
+.diag-grid,.phase-body,.bonus-grid,.why-grid{grid-template-columns:1fr}
+.tl-grid{grid-template-columns:repeat(3,1fr)}
+.phase-head{flex-direction:column;align-items:flex-start;gap:16px}
+.phase-price{margin-left:0;text-align:left}
+}
+@media(max-width:768px){
+.s-hero{padding:80px 20px 48px}
+.tl-grid{grid-template-columns:repeat(2,1fr)}
+.ebar-inner{justify-content:center}
+.ctabox{padding:40px 28px}
+.li-card{padding:32px}
+}
+@media(max-width:480px){
+.s-hero h1{font-size:1.8rem}
+.tl-grid{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+<body>
+
+<div class="amb"><div class="ob ob1"></div><div class="ob ob2"></div><div class="ob ob3"></div></div>
+
+<!-- EXPIRY BAR -->
+<header class="ebar"><div class="ebar-inner">
+<div class="ebar-left">
+<div class="ebar-logo">Decupler <span>×</span> TechMedias</div>
+</div>
+<div class="ebar-exp"><div class="edot"></div>Offre valable jusqu'au 13 mars 2025</div>
+<a href="https://calendly.com/fenina-nathan/consultationstrategique" target="_blank" rel="noopener" class="ebar-cta">Valider la proposition →</a>
+</div></header>
+
+<!-- HERO -->
+<section class="s-hero"><div class="ct">
+<div class="hbadge"><span>📋 Proposition commerciale — Mars 2025</span></div>
+<h1>Infrastructure digitale &<br>visibilité organique pour <span class="gt">TechMedias</span></h1>
+<p class="hsub">Une proposition sur-mesure pour créer votre <strong>vitrine digitale</strong>, structurer votre présence SEO & GEO, et passer de <strong>~30 leads/an à 10+ leads/mois</strong> sur les marchés IT B2B français et international.</p>
+<div class="hfor">
+<div class="hfor-av">RG</div>
+<div class="hfor-info"><div class="hfor-name">Préparé pour Renaud — TechMedias</div><div class="hfor-role">Par Nathan Fenina · Fondateur Decupler · Expert SEO & IA</div></div>
+</div>
+</div></section>
+
+<!-- DIAGNOSTIC -->
+<section class="s-diag"><div class="ct"><div class="diag-grid">
+<div class="diag-txt">
+<span class="stag stag-v">🔍 Diagnostic</span>
+<h2>Ce qu'on a compris de <span class="gt">votre situation</span></h2>
+<p>TechMedias combine <strong>expertise média propriétaire</strong> (iTPro.fr), <strong>production de contenu éditorial</strong> et <strong>génération de leads</strong> (MQL/SQL) pour les acteurs IT B2B. Vous ciblez les CMO de ~500 entreprises en France, principalement des filiales de groupes américains.</p>
+<p>Aujourd'hui, <strong>aucun site agence n'existe</strong>. Votre acquisition organique est à zéro. Vos concurrents sont déjà positionnés. Et le marché attend une communication <strong>100% bilingue FR/EN</strong>.</p>
+<ul class="dlist">
+<li><span class="dico">🎯</span><span>Cible : CMO & directions marketing des ESN, MSP, éditeurs IT</span></li>
+<li><span class="dico">🌍</span><span>Marché bilingue FR/EN — filiales US, UK, Europe</span></li>
+<li><span class="dico">📊</span><span>Objectif : passer de ~30 leads/an à 120+ leads/an (10/mois)</span></li>
+<li><span class="dico">🏗️</span><span>3 piliers : Média (iTPro.fr) · Contenu · Lead Gen (MQL/SQL)</span></li>
+<li><span class="dico">🤝</span><span>Besoin de délégation complète — on gère de A à Z</span></li>
+</ul>
+</div>
+<div class="diag-card">
+<h3>📌 Vos concurrents identifiés</h3>
+<div class="comp-item"><span class="comp-name">Choyou + IT for Business</span><span class="comp-type">Agence + Média</span></div>
+<div class="comp-item"><span class="comp-name">Netmedia Group (Silicon.fr)</span><span class="comp-type">Groupe Média</span></div>
+<div class="comp-item"><span class="comp-name">Cabinet GTEC</span><span class="comp-type">Cabinet spécialisé</span></div>
+<div class="comp-item"><span class="comp-name">TechTarget (LeMagIT)</span><span class="comp-type">Groupe international</span></div>
+<div style="margin-top:24px;padding:20px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:12px;">
+<p style="font-size:14px;line-height:1.7;color:var(--ts)"><strong style="color:#f59e0b">Constat :</strong> Tous ont une présence digitale active et un SEO établi. Partir de zéro exige une stratégie agressive dès le départ — c'est exactement ce qu'on propose.</p>
+</div>
+</div>
+</div></div></section>
+
+<!-- PHASE 1 : SITE -->
+<section class="s-phase"><div class="ct">
+<div class="shc"><span class="stag stag-v">🚀 Notre Approche</span><h2>Deux phases, <span class="gt">un objectif</span></h2><p>Construire votre infrastructure digitale, puis activer la machine d'acquisition organique.</p></div>
+
+<div class="phase-card p1">
+<div class="phase-head">
+<div class="phase-num">1</div>
+<div class="phase-title"><h3>Création du site TechMedias</h3><p>Livraison en 3-4 semaines</p></div>
+<div class="phase-price"><div class="amount">5 000 €</div><div class="freq">one-shot</div></div>
+</div>
+<div class="phase-body">
+<div class="deliv"><h4>🏗️ Structure & Pages</h4><ul>
+<li>Page d'accueil avec positionnement clair et CTA multiples</li>
+<li>3 pages Piliers : Média, Production de contenu, Lead Gen</li>
+<li>Page Références / Cas clients (Microsoft, HP, etc.)</li>
+<li>Page Ressources / Mediakits téléchargeables</li>
+<li>Blog bilingue avec catégorisation SEO</li>
+<li>Page Contact avec formulaire et Calendly intégré</li>
+<li><strong>Toutes les pages en FR + EN</strong> (bilingue natif)</li>
+</ul></div>
+<div class="deliv"><h4>⚡ Technique & Performance</h4><ul>
+<li>WordPress + pages stratégiques codées à la main (HTML/CSS) pour des Core Web Vitals optimaux</li>
+<li>Design premium "agence/innovation" — responsive desktop & mobile</li>
+<li>SEO on-page intégré dès la construction (balises, Hn, Schema.org)</li>
+<li>Formulaires de collecte : téléchargement mediakit, demande de brief, prise de RDV</li>
+<li>Architecture évolutive — ajout de pages et contenus facile</li>
+<li>Domaine expiré avec DA existant (recherche incluse) pour accélérer le référencement</li>
+</ul></div>
+</div>
+</div>
+
+<!-- PHASE 2 : SEO -->
+<div class="phase-card p2">
+<div class="phase-head">
+<div class="phase-num">2</div>
+<div class="phase-title"><h3>Accompagnement SEO & GEO</h3><p>Engagement 6 mois — Délégation complète</p></div>
+<div class="phase-price"><div class="amount">1 500 €</div><div class="freq">/mois × 6 mois</div></div>
+</div>
+<div class="phase-body">
+<div class="deliv"><h4>📝 Contenu & Visibilité</h4><ul>
+<li>Audit sémantique initial + architecture de contenus</li>
+<li>Création d'articles optimisés SEO (blog FR + EN)</li>
+<li>Pages piliers et cocons sémantiques</li>
+<li>Optimisation GEO (visibilité sur les moteurs de recherche IA)</li>
+<li>Maillage interne stratégique</li>
+<li>Refresh et optimisation des contenus existants</li>
+</ul></div>
+<div class="deliv"><h4>📈 Autorité & Technique</h4><ul>
+<li>Campagnes de backlinks (guest blog, partenariats IT)</li>
+<li>Inscriptions annuaires professionnels et plateformes spécialisées</li>
+<li>Outreach et relations médias (Quora, Reddit, forums IT)</li>
+<li>Audit technique continu (Core Web Vitals, crawl, indexation)</li>
+<li>Reporting mensuel avec KPIs et recommandations</li>
+<li>Veille concurrentielle et ajustements stratégiques</li>
+</ul></div>
+</div>
+</div>
+</div></section>
+
+<!-- BONUS -->
+<section class="s-bonus"><div class="ct">
+<div class="shc"><span class="stag stag-e">🎁 Bonus inclus</span><h2>Ce qui est <span class="et">offert</span> dans cette proposition</h2><p>En délégation complète — zéro effort de votre côté.</p></div>
+<div class="bonus-grid">
+<div class="bcard"><div class="bcard-ico">🔗</div><h3>Backlinks & Netlinking</h3><p>Campagnes de liens sur des sites et médias à forte autorité. Guest blog, partenariats éditoriaux, mentions dans l'écosystème IT.</p><span class="badge-free">Inclus</span></div>
+<div class="bcard"><div class="bcard-ico">📂</div><h3>Annuaires & Plateformes Pro</h3><p>Inscription sur les annuaires professionnels, plateformes IT, espaces spécialisés pour construire votre présence digitale.</p><span class="badge-free">Inclus</span></div>
+<div class="bcard"><div class="bcard-ico">🌐</div><h3>Domaine expiré (DA boost)</h3><p>Recherche et acquisition d'un nom de domaine expiré avec autorité existante. Accélérateur de référencement dès le jour 1.</p><span class="badge-free">Inclus</span></div>
+</div>
+</div></section>
+
+<!-- TIMELINE -->
+<section class="s-timeline"><div class="ct">
+<div class="shc"><span class="stag stag-v">📅 Planning</span><h2>Votre <span class="gt">feuille de route</span> sur 6 mois</h2></div>
+<div class="tl-grid">
+<div class="tl-item"><div class="tl-month">Mois 1</div><h4>Lancement</h4><p>Design + développement du site. Recherche domaine expiré. Audit sémantique.</p></div>
+<div class="tl-item"><div class="tl-month">Mois 2</div><h4>Go Live</h4><p>Mise en ligne du site. Premiers contenus SEO. Soumission Google. Backlinks initiaux.</p></div>
+<div class="tl-item"><div class="tl-month">Mois 3</div><h4>Accélération</h4><p>Contenu régulier FR/EN. Guest blog IT. Cocons sémantiques. GEO optimization.</p></div>
+<div class="tl-item"><div class="tl-month">Mois 4</div><h4>Autorité</h4><p>Intensification backlinks. Annuaires pro. Forums spécialisés. Premiers résultats organiques.</p></div>
+<div class="tl-item"><div class="tl-month">Mois 5</div><h4>Scaling</h4><p>Analyse des performances. Renforcement des contenus qui convertissent. Nouvelles opportunités.</p></div>
+<div class="tl-item"><div class="tl-month">Mois 6</div><h4>Optimisation</h4><p>Bilan complet. Ajustements stratégiques. Préparation de la phase 2 de croissance.</p></div>
+</div>
+</div></section>
+
+<!-- LINKEDIN -->
+<section class="s-linkedin"><div class="ct">
+<div class="shc"><span class="stag stag-a">💼 Option LinkedIn</span><h2>Le canal <span class="gt">#1 du B2B</span></h2><p>Activable dans un second temps pour compléter votre stratégie organique.</p></div>
+<div class="li-card">
+<h3>LinkedIn : Personal Branding & Acquisition B2B</h3>
+<p>LinkedIn est devenu le <strong>pilier #1 de l'acquisition B2B</strong> et un critère majeur de visibilité dans les moteurs de recherche IA (GEO). C'est doublement stratégique pour TechMedias.</p>
+<ul class="li-points">
+<li><span class="li-ico">📣</span><span>Création de contenu LinkedIn pour Renaud (personal branding CMO IT)</span></li>
+<li><span class="li-ico">🎯</span><span>Stratégie de prospection organique ciblée sur vos 500 comptes clés</span></li>
+<li><span class="li-ico">🤖</span><span>Automatisation intelligente des interactions et du nurturing</span></li>
+<li><span class="li-ico">📊</span><span>Reporting et optimisation mensuelle</span></li>
+</ul>
+<div class="li-price"><div><div class="amount">Sur devis</div><div class="note">Activable à tout moment</div></div>
+<span class="stag stag-a" style="margin:0">Option</span>
+</div>
+</div>
+</div></section>
+
+<!-- RECAP -->
+<section class="s-recap"><div class="ct">
+<div class="recap-box"><div class="recap-inner">
+<h2>Récapitulatif de <span class="gt">l'investissement</span></h2>
+<div class="recap-line"><span class="recap-label">Phase 1 — Création site TechMedias (FR + EN)</span><span class="recap-val violet">5 000 €</span></div>
+<div class="recap-line"><span class="recap-label">Phase 2 — SEO & GEO × 6 mois (1 500 €/mois)</span><span class="recap-val emerald">9 000 €</span></div>
+<div class="recap-line"><span class="recap-label">Bonus — Backlinks, annuaires, domaine expiré</span><span class="recap-val" style="color:var(--em)">Offert</span></div>
+<div class="recap-total"><span class="recap-label">Total</span><span class="recap-val">14 000 €</span></div>
+<p class="recap-note">Paiement : 5 000 € à la commande (site) puis 1 500 €/mois pendant 6 mois.<br>Option LinkedIn activable séparément à tout moment.</p>
+</div></div>
+</div></section>
+
+<!-- WHY -->
+<section class="s-why"><div class="ct">
+<div class="shc"><span class="stag stag-v">🏆 Pourquoi Decupler</span><h2>Votre <span class="gt">partenaire</span> idéal</h2></div>
+<div class="why-grid">
+<div class="wcard"><div class="wcard-ico">🧠</div><h4>12+ ans d'expertise SEO</h4><p>Spécialiste du référencement B2B et des marchés de niche à forte valeur.</p></div>
+<div class="wcard"><div class="wcard-ico">🤖</div><h4>IA & Automatisation</h4><p>SEO AI Systems — notre plateforme IA qui produit du contenu premium 10× plus vite.</p></div>
+<div class="wcard"><div class="wcard-ico">🏢</div><h4>Clients Grands Comptes</h4><p>Société Générale, Le Point, Decathlon, Pluxee — on connaît les exigences B2B.</p></div>
+<div class="wcard"><div class="wcard-ico">🔑</div><h4>Délégation 100%</h4><p>On gère tout de A à Z. Vous validez, on exécute. Zéro friction opérationnelle.</p></div>
+</div>
+</div></section>
+
+<!-- CTA -->
+<section class="s-cta"><div class="ct">
+<div class="ctabox">
+<h2>Prêt à lancer <span class="gt">TechMedias</span> ?</h2>
+<p>Validons cette proposition ensemble et planifions le kick-off pour démarrer la construction de votre infrastructure digitale.</p>
+<a href="https://calendly.com/fenina-nathan/consultationstrategique" target="_blank" rel="noopener" class="ctabtn">Valider la proposition →</a>
+<p class="cta-trust">30 minutes · Visio · Sans engagement</p>
+<div class="cta-exp">⏱️ Offre valable jusqu'au 13 mars 2025</div>
+</div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="s-foot"><div class="ct">
+<p>Proposition confidentielle — <a href="https://decupler.com" target="_blank" rel="noopener">Decupler</a> · Nathan Fenina · Expert SEO & IA</p>
+</div></footer>
+
+</body>
+</html>
